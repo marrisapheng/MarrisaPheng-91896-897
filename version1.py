@@ -82,9 +82,24 @@ def submit_summary_report():
                 summary_label = tk.Label(submit_report, text=summary_text, bg="black")
                 summary_label.pack(pady=10)
             
-            #Show summary report button
-            summary_button = tk.Button(submit_report, text="Show Summary Report", command=show_summary_report)
-            summary_button.pack(pady=10)
+            #Save summary report to txt file
+                def save_student_summary():
+                    student_name = name_entry.get()
+                    if student_name == "":
+                        messagebox.showerror("Invalid, Please enter a valid name.")
+                        return
+                    with open("student_records.txt", "a") as file:
+                        file.write(f"Student Name: {student_name}, Average Grade: {average:.2f}\n")
+                        save_summary = tk.Label(submit_report, text="Student summary report saved successfully!", bg="black")
+                        save_summary.pack(pady=10)
+
+                #Save summary report button
+                save_button = tk.Button(submit_report, text="Save Summary Report", command=save_student_summary)
+                save_button.pack(pady=10)
+
+                #Show summary report button
+            show_summary_button = tk.Button(submit_report, text="Show Summary Report", command=show_summary_report)
+            show_summary_button.pack(pady=10)
 
         #Submit button
         submit_button = tk.Button(submit_report, text="Submit Grades", command=submit_grades)
