@@ -6,13 +6,29 @@ root = tk.Tk()
 root.title("Student Gradebook Manager")
 root.geometry("1080x1080")
 root.configure(bg="black")
-
+root.withdraw()
 #Menu window
 def show_menu():
+    #Close any exisiting menu window
+    for window in root.winfo_children():
+        if isinstance(window, tk.Toplevel):
+            window.destroy()
     menu_window = tk.Toplevel(root)
     menu_window.title("Menu")
     menu_window.geometry("1080x1080")
     menu_window.configure(bg="black")
+    menu_window.grab_set()
+
+    #Menu buttons
+    #View summary report button
+    view_summary_report_button = tk.Button(menu_window, text="View Summary Report", command=lambda: [menu_window.destroy(), view_summary_report()])
+    view_summary_report_button.pack(pady=20)
+    #Submit summary report button
+    submit_summary_report_button = tk.Button(menu_window, text="Submit Summary Report", command=lambda: [menu_window.destroy(), submit_summary_report()])
+    submit_summary_report_button.pack(pady=20)
+    #Close button
+    close_button = tk.Button(menu_window, text="Close", command=lambda: [menu_window.destroy(), root.destroy()])
+    close_button.pack(pady=20)
 
 #Submit summary report
 def submit_summary_report():
@@ -20,9 +36,12 @@ def submit_summary_report():
     submit_report.title("Submit Summary Report")
     submit_report.geometry("1080x1080")
     submit_report.configure(bg="black")
+    submit_report.grab_set()
 
     #List for grades
     grades = []
+    grade_widgets = []
+    result_labels = []
 
     #Name and subjects question
     tk.Label(submit_report, text="Enter Your Name:", bg="black").pack(pady=10)
@@ -36,8 +55,9 @@ def submit_summary_report():
 
     def grade_entries():
         #Delete previous entries
-        for widget in grades:
+        for widget in grade_widgets:
             widget.destroy()
+        grade_widgets.clear()
         grades.clear()
 
         #Get number of subjects
@@ -59,9 +79,14 @@ def submit_summary_report():
             grade_entry = tk.Entry(submit_report)
             grade_entry.pack(pady=10)
             grades.append(grade_entry)
+            grade_widgets.append(grade_label)
+            grade_widgets.append(grade_entry)
 
         #Submit grades
         def submit_grades():
+            for label in result_labels:
+                label.destroy()
+            result_labels.clear()
             try:
                 grades_list = [int(grade.get()) for grade in grades]
                 if any(grade < 0 or grade > 100 for grade in grades_list):
@@ -75,39 +100,38 @@ def submit_summary_report():
             average_label = tk.Label(submit_report,text= f"Average Grade: {average:.2f}")
             average_label.pack(pady=10)
 
-            #Show summary report
-            def show_summary_report():
-                student_name = name_entry.get()
-                summary_text = f"Student Name: {student_name}, Average Grade: {average}\n"
-                summary_label = tk.Label(submit_report, text=summary_text, bg="black")
-                summary_label.pack(pady=10)
-            
+            student_name = name_entry.get()
+            summary_text = f"Student Name: {student_name}, Average Grade: {average}\n"
+            summary_label = tk.Label(submit_report, text=summary_text, bg="black")
+            summary_label.pack(pady=10)
+
             #Save summary report to txt file
-                def save_student_summary():
-                    student_name = name_entry.get()
-                    if student_name == "":
-                        messagebox.showerror("Invalid, Please enter a valid name.")
-                        return
-                    with open("student_records.txt", "a") as file:
-                        file.write(f"Student Name: {student_name}, Average Grade: {average:.2f}\n")
-                        save_summary = tk.Label(submit_report, text="Student summary report saved successfully!", bg="black")
-                        save_summary.pack(pady=10)
+            def save_student_summary():
+                student_name = name_entry.get()
+                if student_name == "":
+                    messagebox.showerror("Invalid, Please enter a valid name.")
+                    return
+                with open("student_records.txt", "a") as file:
+                    file.write(f"Student Name: {student_name}, Average Grade: {average:.2f}\n")
+                save_summary = tk.Label(submit_report, text="Student summary report saved successfully!", bg="black")
+                save_summary.pack(pady=10)
 
-                #Save summary report button
-                save_button = tk.Button(submit_report, text="Save Summary Report", command=save_student_summary)
-                save_button.pack(pady=10)
-
-                #Show summary report button
-            show_summary_button = tk.Button(submit_report, text="Show Summary Report", command=show_summary_report)
-            show_summary_button.pack(pady=10)
-
+            tk.Button(submit_report, text="Save Summary Report", command=save_student_summary).pack(pady=10)
+            tk.Button(submit_report, text="Return to Menu", command=lambda: [submit_report.destroy(), show_menu()]).pack(pady=10)
         #Submit button
         submit_button = tk.Button(submit_report, text="Submit Grades", command=submit_grades)
         submit_button.pack(pady=10)
-
+        grade_widgets.append(submit_button)
     #Button from entering subjects to entering grades
     next_button = tk.Button(submit_report, text="Next", command=grade_entries)
     next_button.pack(pady=10)
+
+        
+
+            #Return to menu button
+    return_button = tk.Button(submit_report, text="Return to Menu", command=lambda: [submit_report.destroy(),show_menu()])
+    return_button.pack(pady=10)
+
 
 #View summary report
 def view_summary_report():
@@ -116,16 +140,7 @@ def view_summary_report():
     view_report.geometry("1080x1080")
     view_report.configure(bg="black")
 
-#View summary report button
-view_summary_report_button = tk.Button(root, text="View Summary Report", command=view_summary_report)
-view_summary_report_button.pack(pady=20)
-#Submit summary report button
-submit_summary_report_button = tk.Button(root, text="Submit Summary Report", command=submit_summary_report)
-submit_summary_report_button.pack(pady=20)
-#Close button
-close_button = tk.Button(root, text="Close", command=root.destroy)
-close_button.pack(pady=20)
 
+
+show_menu()
 root.mainloop()
-
-#this is my initial commit
