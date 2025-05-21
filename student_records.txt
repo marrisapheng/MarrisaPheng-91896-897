@@ -18,3 +18,9 @@ Student Name: m, Average Grade: 32.00
 Student Name: m, Average Grade: 32.00
 Student Name: m, Average Grade: 21.00
 Student Name: v, Average Grade: 22.00
+Student Name: v, Average Grade: 22.00
+Student Name: v, Average Grade: 26.50
+Student Name: m, Average Grade: 12.00
+Student Name: m, Average Grade: 12.00
+Student Name: marrisa, Average Grade: 32.00
+Student Name: tay, Average Grade: 32.00
