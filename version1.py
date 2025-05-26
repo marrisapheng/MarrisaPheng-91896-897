@@ -64,7 +64,7 @@ def submit_summary_report():
         try:
             num_subjects= int(subjects_entry.get())
             if num_subjects <= 0 or num_subjects >=6:
-                messagebox.showerror("Invalid Input", "Number of subjects is invalid, please try again.")
+                messagebox.showerror("Invalid Input", "Invalid, please enter a numeric value.")
                 subjects_entry.delete(0, tk.END)
                 return
         except ValueError:
