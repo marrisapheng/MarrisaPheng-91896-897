@@ -4,7 +4,7 @@ from tkinter import messagebox
 #Main window
 root = tk.Tk()
 root.title("Student Gradebook Manager")
-root.geometry("1080x1080")
+root.geometry("1920x1080")
 root.configure(bg="black")
 root.withdraw()
 #Menu window
@@ -15,7 +15,7 @@ def show_menu():
             window.destroy()
     menu_window = tk.Toplevel(root)
     menu_window.title("Menu")
-    menu_window.geometry("1080x1080")
+    menu_window.geometry("1920x1080")
     menu_window.configure(bg="black")
     menu_window.grab_set()
 
@@ -23,18 +23,21 @@ def show_menu():
     #View summary report button
     view_summary_report_button= tk.Button(menu_window, text= "View Summary Report", command=lambda: [menu_window.destroy(), view_summary_report()])
     view_summary_report_button.pack(pady=20)
+    view_summary_report_button.place(x=530, y=300, width=200, height=50)
     #Submit summary report button
     submit_summary_report_button= tk.Button(menu_window, text= "Submit Summary Report", command=lambda: [menu_window.destroy(), submit_summary_report()])
     submit_summary_report_button.pack(pady=20)
+    submit_summary_report_button.place(x=730, y=300, width=200, height=50)
     #Close button
     close_button= tk.Button(menu_window, text= "Close", command=lambda: [menu_window.destroy(), root.destroy()])
     close_button.pack(pady=20)
+    close_button.place(x=655, y=350, width=150, height=40)
 
 #Submit summary report
 def submit_summary_report():
     submit_report= tk.Toplevel(root)
     submit_report.title("Submit Summary Report")
-    submit_report.geometry("1080x1080")
+    submit_report.geometry("1920x1080")
     submit_report.configure(bg="black")
     submit_report.grab_set()
 
@@ -136,7 +139,7 @@ def submit_summary_report():
 def view_summary_report():
     view_report= tk.Toplevel(root)
     view_report.title("View Summary Report")
-    view_report.geometry("1080x1080")
+    view_report.geometry("1920x1080")
     view_report.configure(bg="black")
     view_report.grab_set()
 
