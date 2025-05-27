@@ -19,6 +19,16 @@ def show_menu():
     menu_window.configure(bg="black")
     menu_window.grab_set()
 
+    #Welcome message
+    welcome_label = tk.Label(menu_window, text="Welcome to the Student Gradebook Manager!", bg="black", fg="white", font=("Arial", 50))
+    welcome_label.pack(pady=20)
+    welcome_label.place(x=230, y=150)
+
+    #Instructions message
+    instructions_label = tk.Label(menu_window, text="Please select an option below:", bg="black", fg="white", font=("Arial", 30))
+    instructions_label.pack(pady=20)
+    instructions_label.place(x=525, y=210)
+
     #Menu buttons
     #View summary report button
     view_summary_report_button= tk.Button(menu_window, text= "View Summary Report", command=lambda: [menu_window.destroy(), view_summary_report()])
