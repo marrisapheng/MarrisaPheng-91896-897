@@ -112,11 +112,13 @@ def submit_summary_report():
             average= sum(grades_list) / len(grades_list)
             average_label= tk.Label(submit_report,text= f"Average Grade: {average:.2f}")
             average_label.pack(pady=10)
+            average_label.place(x=900, y=100)
 
             student_name= name_entry.get()
             summary_text= f"Student Name: {student_name}, Average Grade: {average}\n"
             summary_label= tk.Label(submit_report, text= summary_text, bg="black")
             summary_label.pack(pady=10)
+            summary_label.place(x=900, y=50)
 
             #Save summary report to txt file
             def save_student_summary():
@@ -128,22 +130,28 @@ def submit_summary_report():
                     file.write(f"Student Name: {student_name}, Average Grade: {average:.2f}\n")
                 save_summary= tk.Label(submit_report, text= "Student summary report saved successfully!", bg="black")
                 save_summary.pack(pady=10)
+                save_summary.place(x=900, y=200)
             #Save summary button
-            tk.Button(submit_report, text= "Save Summary Report", command=save_student_summary).pack(pady=10)
-            #Return to menu
-            tk.Button(submit_report, text= "Return to Menu", command=lambda: [submit_report.destroy(), show_menu()]).pack(pady=10)
+            save_summary_report_button = tk.Button(submit_report, text= "Save Summary Report", command=save_student_summary)
+            save_summary_report_button.pack(pady=10)
+            save_summary_report_button.place(x=900, y=150)
+
         #Submit button
         submit_button= tk.Button(submit_report, text= "Submit Grades", command=submit_grades)
         submit_button.pack(pady=10)
+        submit_button.place(width=140, height=30, x=665, y=650) #HERE
         grade_widgets.append(submit_button)
 
     #Button from entering subjects to entering grades
     next_button= tk.Button(submit_report, text= "Next", command=grade_entries)
     next_button.pack(pady=10)
+    next_button.place(width=140, height=30, x=665, y=700) #HERE
 
     #Return to menu button
     return_button= tk.Button(submit_report, text= "Return to Menu", command=lambda: [submit_report.destroy(),show_menu()])
     return_button.pack(pady=10)
+    return_button.place(width=140, height=30, x=665, y=750) #HERE
+
 
 #View summary report
 def view_summary_report():
