@@ -196,11 +196,11 @@ def view_summary_report():
 
     #Search button
     search_button = tk.Button(view_report, text="Search", bg="white", fg="navy", command=search_student)
-    search_button.place(x=670, y=500, width=140, height=30)
+    search_button.place(x=650, y=550, width=140, height=30)
 
     #Return to menu button
     return_button = tk.Button(view_report, text="Return to Menu", bg="white", fg="navy", command=lambda: [view_report.destroy(), show_menu()])
-    return_button.place(x=670, y=550, width=140, height=30)
+    return_button.place(x=650, y=600, width=140, height=30)
 
 
 show_menu()
