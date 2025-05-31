@@ -97,7 +97,7 @@ def submit_summary_report():
                 label.destroy()
             result_labels.clear()
             try:
-                grades_list= [int(grade.get()) for grade in grades]
+                grades_list= [float(grade.get()) for grade in grades]
                 if any(grade < 0 or grade > 100 for grade in grades_list):
                     raise ValueError
             except ValueError:
