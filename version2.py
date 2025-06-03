@@ -7,6 +7,7 @@ root.title("Student Gradebook Manager")
 root.geometry("1920x1080")
 root.configure(bg="white")
 root.withdraw()
+
 #Menu window
 def show_menu():
     #Close any exisiting menu window
@@ -73,11 +74,11 @@ def submit_summary_report():
         try:
             num_subjects= int(subjects_entry.get())
             if num_subjects <= 0 or num_subjects >=6:
-                messagebox.showerror("Invalid Input", "Invalid, please enter a numeric value.")
+                messagebox.showerror("Invalid Input", "Please enter a valid number of subjects.")
                 subjects_entry.delete(0, tk.END)
                 return
         except ValueError:
-            messagebox.showerror("Invalid Input", "Please enter a valid number of subjects.")
+            messagebox.showerror("Invalid Input", "Invalid, please enter a numeric value.")
             subjects_entry.delete(0, tk.END)
             return
         

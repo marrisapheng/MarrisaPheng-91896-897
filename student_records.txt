@@ -16,3 +16,5 @@ Student Name: m, Average Grade: 42.00
 Student Name: m, Average Grade: 43.00
 Student Name: m, Average Grade: 43.00
 Student Name: marrisa, Average Grade: 43.00
+Student Name: M, Average Grade: 32.00
+Student Name: m, Average Grade: 54.00
