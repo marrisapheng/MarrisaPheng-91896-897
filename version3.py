@@ -58,7 +58,7 @@ def submit_summary_report():
     name_entry = tk.Entry(submit_report, bg="navy")
     name_entry.pack(pady=10)
 
-    subjects_label = tk.Label(submit_report, text="Total Number of Subjects:", bg="white", fg="navy")
+    subjects_label = tk.Label(submit_report, text="Total Number of Subjects (1-5):", bg="white", fg="navy")
     subjects_label.pack(pady=10)
     subjects_entry = tk.Entry(submit_report, bg="navy")
     subjects_entry.pack(pady=10)
@@ -84,7 +84,7 @@ def submit_summary_report():
         
         #Enter grade prompt
         for i in range(num_subjects):
-            grade_label= tk.Label(submit_report, text= f"Enter Grade for Subject {i+1}:", bg="white", fg="navy")
+            grade_label= tk.Label(submit_report, text= f"Enter Grade for Subject {i+1} (1-100):", bg="white", fg="navy")
             grade_label.pack(pady=10)
             grade_entry= tk.Entry(submit_report, bg="navy", fg="white")
             grade_entry.pack(pady=10)
