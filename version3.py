@@ -180,7 +180,12 @@ def view_summary_report():
 
         try:
             with open("student_records.txt", "r") as file:
-                student_found = [line for line in file if student_name.lower() in line.lower()]
+                student_found = []
+                search_student_name = student_name.lower().strip()
+                for line in file:
+                    line_lower = line.lower().strip()
+                    if line_lower.startswith(f"student name: {search_student_name},"):
+                        student_found.append(line.strip())
                 if student_found:
                     result_text = "\n".join(student_found)
                 else:
