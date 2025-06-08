@@ -30,13 +30,13 @@ def show_menu():
 
     #Menu buttons
     #View summary report button
-    view_summary_report_button= tk.Button(menu_window, text= "View Summary Report", bg="white", fg="navy blue", command=lambda: [menu_window.destroy(), view_summary_report()])
+    view_summary_report_button= tk.Button(menu_window, text= "View Summary Report", bg="white", fg="navy blue", font=("arial bold",15), command=lambda: [menu_window.destroy(), view_summary_report()])
     view_summary_report_button.place(x=530, y=300, width=200, height=50)
     #Submit summary report button
-    submit_summary_report_button= tk.Button(menu_window, text= "Submit Summary Report", bg="white", fg="navy blue", command=lambda: [menu_window.destroy(), submit_summary_report()])
+    submit_summary_report_button= tk.Button(menu_window, text= "Submit Summary Report", bg="white", fg="navy blue", font=("arial bold",15), command=lambda: [menu_window.destroy(), submit_summary_report()])
     submit_summary_report_button.place(x=730, y=300, width=200, height=50)
     #Close button
-    close_button= tk.Button(menu_window, text= "Close", bg="white", fg="navy blue", command=lambda: [menu_window.destroy(), root.destroy()])
+    close_button= tk.Button(menu_window, text= "Close", bg="white", fg="navy blue", font=("arial bold",15), command=lambda: [menu_window.destroy(), root.destroy()])
     close_button.place(x=655, y=350, width=150, height=40)
 
 #Submit summary report
@@ -53,12 +53,12 @@ def submit_summary_report():
     result_labels= []
 
     #Name and subjects question
-    name_entry_label = tk.Label(submit_report, text= "Enter Your Name:", bg="white", fg="navy")
+    name_entry_label = tk.Label(submit_report, text= "Enter Your Name:", bg="white", fg="navy", font=("arial bold",15))
     name_entry_label.pack(pady=10)
     name_entry = tk.Entry(submit_report, bg="navy")
     name_entry.pack(pady=10)
 
-    subjects_label = tk.Label(submit_report, text="Total Number of Subjects (1-5):", bg="white", fg="navy")
+    subjects_label = tk.Label(submit_report, text="Total Number of Subjects (1-5):", bg="white", fg="navy", font=("arial bold",15))
     subjects_label.pack(pady=10)
     subjects_entry = tk.Entry(submit_report, bg="navy")
     subjects_entry.pack(pady=10)
@@ -84,7 +84,7 @@ def submit_summary_report():
         
         #Enter grade prompt
         for i in range(num_subjects):
-            grade_label= tk.Label(submit_report, text= f"Enter Grade for Subject {i+1} (1-100):", bg="white", fg="navy")
+            grade_label= tk.Label(submit_report, text= f"Enter Grade for Subject {i+1} (1-100):", bg="white", fg="navy", font=("arial bold",15))
             grade_label.pack(pady=10)
             grade_entry= tk.Entry(submit_report, bg="navy", fg="white")
             grade_entry.pack(pady=10)
@@ -107,12 +107,12 @@ def submit_summary_report():
             
             #Calculate average grade
             average= sum(grades_list) / len(grades_list)
-            average_label= tk.Label(submit_report,text= f"Average Grade: {average:.2f}", bg="white", fg="navy")
+            average_label= tk.Label(submit_report,text= f"Average Grade: {average:.2f}", bg="white", fg="navy", font=("arial bold",15))
             average_label.place(x=900, y=100)
 
             student_name= name_entry.get()
             summary_text= f"Student Name: {student_name}, Average Grade: {average}\n"
-            summary_label= tk.Label(submit_report, text= summary_text, bg="white", fg="navy")
+            summary_label= tk.Label(submit_report, text= summary_text, bg="white", fg="navy", font=("arial bold",15))
             summary_label.place(x=900, y=50)
 
             #Save summary report to txt file
@@ -123,23 +123,23 @@ def submit_summary_report():
                     return
                 with open("student_records.txt", "a") as file:
                     file.write(f"Student Name: {student_name}, Average Grade: {average:.2f}\n")
-                save_summary= tk.Label(submit_report, text= "Student summary report saved successfully!", bg="white", fg="navy")
+                save_summary= tk.Label(submit_report, text= "Student summary report saved successfully!", bg="white", fg="navy", font=("arial bold",15))
                 save_summary.place(x=900, y=200)
             #Save summary report button
-            save_summary_report_button = tk.Button(submit_report, text= "Save Summary Report", bg="white", fg="navy", command=save_student_summary)
+            save_summary_report_button = tk.Button(submit_report, text= "Save Summary Report", bg="white", fg="navy", font=("arial bold",15), command=save_student_summary)
             save_summary_report_button.place(x=900, y=150)
 
         #Submit button
-        submit_button= tk.Button(submit_report, text= "Submit Grades", bg="white", fg="navy", command=submit_grades)
+        submit_button= tk.Button(submit_report, text= "Submit Grades", bg="white", fg="navy",font=("arial bold",15), command=submit_grades)
         submit_button.place(width=140, height=30, x=665, y=650)
         grade_widgets.append(submit_button)
 
     #Button from entering subjects to entering grades
-    next_button= tk.Button(submit_report, text= "Next", command=grade_entries, bg="white", fg="navy")
+    next_button= tk.Button(submit_report, text= "Next", command=grade_entries, bg="white", fg="navy", font=("arial bold",15))
     next_button.place(width=140, height=30, x=665, y=700)
 
     #Return to menu button
-    return_button= tk.Button(submit_report, text= "Return to Menu", bg="white", fg="navy", command=lambda: [submit_report.destroy(),show_menu()])
+    return_button= tk.Button(submit_report, text= "Return to Menu", bg="white", fg="navy", font=("arial bold",15), command=lambda: [submit_report.destroy(),show_menu()])
     return_button.place(width=140, height=30, x=665, y=750)
 
 
@@ -152,7 +152,7 @@ def view_summary_report():
     view_report.grab_set()
 
     #Enter student name prompt
-    name_prompt_label= tk.Label(view_report, text="Enter Student Name:", bg="white", fg="navy")
+    name_prompt_label= tk.Label(view_report, text="Enter Student Name:", bg="white", fg="navy", font=("arial bold",15))
     name_prompt_label.place(x=650, y=50)
 
     #Search student name
@@ -160,7 +160,7 @@ def view_summary_report():
     search_name_entry.place(x=650, y=80, width=200, height=30)
 
     #Result title
-    result_title_label = tk.Label(view_report, text="Result:", bg="white", fg="navy", font=("Arial", 15))
+    result_title_label = tk.Label(view_report, text="Result:", bg="white", fg="navy", font=("arial bold", 15))
     result_title_label.place(x=650, y=120)
     #Result label
     result_text_box = tk.Text(view_report, bg="navy", fg="white", wrap="word", height=20, width=61, font=("Arial", 15))
@@ -196,11 +196,11 @@ def view_summary_report():
 
 
     #Search button
-    search_button = tk.Button(view_report, text="Search", bg="white", fg="navy", command=search_student)
+    search_button = tk.Button(view_report, text="Search", bg="white", fg="navy", font=("arial bold",15), command=search_student)
     search_button.place(x=650, y=550, width=140, height=30)
 
     #Return to menu button
-    return_button = tk.Button(view_report, text="Return to Menu", bg="white", fg="navy", command=lambda: [view_report.destroy(), show_menu()])
+    return_button = tk.Button(view_report, text="Return to Menu", bg="white", fg="navy", font=("arial bold",15), command=lambda: [view_report.destroy(), show_menu()])
     return_button.place(x=650, y=600, width=140, height=30)
 
 
