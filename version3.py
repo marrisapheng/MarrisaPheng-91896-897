@@ -21,22 +21,22 @@ def show_menu():
     menu_window.grab_set()
 
     #Welcome message
-    welcome_label = tk.Label(menu_window, text="Welcome to the Student Gradebook Manager!", bg="white", fg="navy blue", font=("arial bold", 50))
+    welcome_label = tk.Label(menu_window, text="Welcome to the Student Gradebook Manager!", bg="white", fg="navy", font=("arial bold", 50))
     welcome_label.place(x=230, y=150)
 
     #Instructions message
-    instructions_label = tk.Label(menu_window, text="Please select an option below:", bg="white", fg="navy blue", font=("Arial", 30))
+    instructions_label = tk.Label(menu_window, text="Please select an option below:", bg="white", fg="navy", font=("Arial", 30))
     instructions_label.place(x=525, y=210)
 
     #Menu buttons
     #View summary report button
-    view_summary_report_button= tk.Button(menu_window, text= "View Summary Report", bg="white", fg="navy blue", font=("arial bold",15), command=lambda: [menu_window.destroy(), view_summary_report()])
+    view_summary_report_button= tk.Button(menu_window, text= "View Summary Report", bg="white", fg="navy", font=("arial bold",15), command=lambda: [menu_window.destroy(), view_summary_report()])
     view_summary_report_button.place(x=530, y=300, width=200, height=50)
     #Submit summary report button
-    submit_summary_report_button= tk.Button(menu_window, text= "Submit Summary Report", bg="white", fg="navy blue", font=("arial bold",15), command=lambda: [menu_window.destroy(), submit_summary_report()])
+    submit_summary_report_button= tk.Button(menu_window, text= "Submit Summary Report", bg="white", fg="navy", font=("arial bold",15), command=lambda: [menu_window.destroy(), submit_summary_report()])
     submit_summary_report_button.place(x=730, y=300, width=200, height=50)
     #Close button
-    close_button= tk.Button(menu_window, text= "Close", bg="white", fg="navy blue", font=("arial bold",15), command=lambda: [menu_window.destroy(), root.destroy()])
+    close_button= tk.Button(menu_window, text= "Close", bg="white", fg="navy", font=("arial bold",15), command=lambda: [menu_window.destroy(), root.destroy()])
     close_button.place(x=655, y=350, width=150, height=40)
 
 #Submit summary report
@@ -69,6 +69,12 @@ def submit_summary_report():
             widget.destroy()
         grade_widgets.clear()
         grades.clear()
+
+        #Student name must be less than 30 characters
+        student_name = name_entry.get().strip()
+        if student_name == "" or len(student_name) > 30:
+            messagebox.showerror("Invalid Input", "Name must be less than 30 characters.")
+            return
 
         #Get number of subjects
         try:
@@ -117,9 +123,9 @@ def submit_summary_report():
 
             #Save summary report to txt file
             def save_student_summary():
-                student_name= name_entry.get()
-                if student_name== "":
-                    messagebox.showerror("Invalid, Please enter a valid name.")
+                student_name= name_entry.get().strip()
+                if student_name == "" or len(student_name) > 30:
+                    messagebox.showerror("Invalid", "Name must be less than 30 characters.")
                     return
                 with open("student_records.txt", "a") as file:
                     file.write(f"Student Name: {student_name}, Average Grade: {average:.2f}\n")
@@ -174,8 +180,8 @@ def view_summary_report():
     #Search for student
     def search_student():
         student_name= search_name_entry.get().strip()
-        if student_name== "":
-            messagebox.showerror("Invalid Input", "Please enter a valid name.")
+        if student_name== "" or len(student_name) >= 30:
+            messagebox.showerror("Invalid Input", "Name must be less than 30 characters.")
             return
 
         try:
