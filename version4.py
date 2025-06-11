@@ -119,12 +119,12 @@ def submit_summary_report():
             #Calculate average grade
             average= sum(grades_list) / len(grades_list)
             average_label= tk.Label(submit_report,text= f"Average Grade: {average:.2f}", bg="white", fg="navy", font=("arial bold",15))
-            average_label.place(x=900, y=100)
+            average_label.place(x=900, y=60)
 
             student_name= name_entry.get()
             summary_text= f"Student Name: {student_name}, Average Grade: {average}\n"
             summary_label= tk.Label(submit_report, text= summary_text, bg="white", fg="navy", font=("arial bold",15))
-            summary_label.place(x=900, y=50)
+            summary_label.place(x=900, y=20)
 
             #Save summary report to txt file
             def save_student_summary():
@@ -135,10 +135,15 @@ def submit_summary_report():
                 with open("student_records.txt", "a") as file:
                     file.write(f"Student Name: {student_name}, Average Grade: {average:.2f}\n")
                 save_summary= tk.Label(submit_report, text= "Student summary report saved successfully!", bg="white", fg="navy", font=("arial bold",15))
-                save_summary.place(x=900, y=200)
+                save_summary.place(x=900, y=140)
+
+            #Label to tell users to click save summary report button
+            pre_save_label = tk.Label(submit_report, text="Click the 'Save Summary Report' button to save the report.", bg="white", fg="navy", font=("arial bold", 15))
+            pre_save_label.place(x=900, y=90)
+
             #Save summary report button
             save_summary_report_button = tk.Button(submit_report, text= "Save Summary Report", bg="white", fg="navy", font=("arial bold",15), command=save_student_summary)
-            save_summary_report_button.place(x=900, y=150)
+            save_summary_report_button.place(x=900, y=125)
 
         #Submit button
         submit_button= tk.Button(submit_report, text= "Submit Grades", bg="white", fg="navy",font=("arial bold",15), command=submit_grades)
