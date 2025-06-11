@@ -54,14 +54,14 @@ def submit_summary_report():
 
     #Name and subjects question
     name_entry_label = tk.Label(submit_report, text= "Enter Your Name:", bg="white", fg="navy", font=("arial bold",15))
-    name_entry_label.pack(pady=10)
+    name_entry_label.pack(pady=5)
     name_entry = tk.Entry(submit_report, bg="navy")
-    name_entry.pack(pady=10)
+    name_entry.pack(pady=5)
 
     subjects_label = tk.Label(submit_report, text="Total Number of Subjects (1-5):", bg="white", fg="navy", font=("arial bold",15))
-    subjects_label.pack(pady=10)
+    subjects_label.pack(pady=5)
     subjects_entry = tk.Entry(submit_report, bg="navy")
-    subjects_entry.pack(pady=10)
+    subjects_entry.pack(pady=5)
 
     def grade_entries():
         #Delete previous entries
@@ -91,12 +91,17 @@ def submit_summary_report():
         #Enter grade prompt
         for i in range(num_subjects):
             grade_label= tk.Label(submit_report, text= f"Enter Grade for Subject {i+1} (1-100):", bg="white", fg="navy", font=("arial bold",15))
-            grade_label.pack(pady=10)
+            grade_label.pack(pady=5)
             grade_entry= tk.Entry(submit_report, bg="navy", fg="white")
-            grade_entry.pack(pady=10)
+            grade_entry.pack(pady=5)
             grades.append(grade_entry)
             grade_widgets.append(grade_label)
             grade_widgets.append(grade_entry)
+
+        #Label to add clarity below grade entry prompt
+        post_grade_entry_label = tk.Label(submit_report, text="Click the 'Submit Grades' button to continue.", bg="white", fg="navy", font=("arial bold", 15)) 
+        post_grade_entry_label.pack(pady=5)
+        grade_widgets.append(post_grade_entry_label)
 
         #Submit grades
         def submit_grades():
@@ -110,7 +115,7 @@ def submit_summary_report():
             except ValueError:
                 messagebox.showerror("Invalid Input", "Please enter valid grades between 0 and 100.")
                 return
-            
+
             #Calculate average grade
             average= sum(grades_list) / len(grades_list)
             average_label= tk.Label(submit_report,text= f"Average Grade: {average:.2f}", bg="white", fg="navy", font=("arial bold",15))
