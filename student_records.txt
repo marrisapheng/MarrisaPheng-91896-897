@@ -22,3 +22,4 @@ Student Name: marrisa, Average Grade: 32.00
 Student Name: marrisa, Average Grade: 33.33
 Student Name: marrisa, Average Grade: 44.00
 Student Name: marrisa, Average Grade: 33.00
+Student Name: Tony, Average Grade: 53.33
