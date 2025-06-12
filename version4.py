@@ -190,7 +190,10 @@ def view_summary_report():
     #Search for student
     def search_student():
         student_name= search_name_entry.get().strip()
-        if student_name== "" or len(student_name) >= 30:
+        if student_name== "":
+            messagebox.showerror("Invalid Input", "Please enter a student name.")
+            return
+        if len(student_name) >= 30:
             messagebox.showerror("Invalid Input", "Name must be less than 30 characters.")
             return
 
